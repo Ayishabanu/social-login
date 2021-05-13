@@ -52,7 +52,6 @@ $(document).ready(function(){
      console.log('Successful login for: ' + response.name);
      var profile = `<p>Welcome ${response.name}<p>
       <img src="${response.picture.data.url}"/>
-      <p>Your ID is ${response.id}</p>
       <p>Your email is ${response.email}</p>
      
       `;
