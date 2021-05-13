@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Social Media Integration</title>
+<meta charset="UTF-8">
+<meta name="google-signin-client_id" content="418692990183-e96702q0sihalafhqei46t8l3s6ha3kp.apps.googleusercontent.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Crete+Round&family=Satisfy&display=swap" rel="stylesheet">
+</head>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script>
+    function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  
+  var name=document.querySelector('#Name');
+  name.innerText="Welcome..."+profile.getName();
+   var img=document.querySelector('#Imagee');
+   var image=document.createElement('img'); //getElementById instead of querySelectorAll
+    image.setAttribute('src', profile.getImageUrl());
+ img.append(image);
+  var email=document.querySelector('#Email');
+  email.innerText=profile.getEmail();
+  
+}
+
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+      document.getElementById('Name').innerHTML="";
+      document.getElementById('Email').innerHTML="Thank You";
+      document.getElementById('Imagee').innerHTML="See You Again!";
+    });
+  }
+</script>
+
+<body style="background-image:url('bg.png');font-family: 'Crete Round', serif;
+">
+    <h1> Sign-in To Get Your Google Account Information!</h1>
+ 
+    <div  class="g-signin2" data-onsuccess="onSignIn"></div>
+    <br/>
+     <div id="Name"></div><br/>
+     <div id="Imagee"></div><br/>
+      <div id="Email"></div><br/>
+       
+  
+   <a href="https://malfeasance-timer.000webhostapp.com/ggl.html" onclick="signOut();"><img  width="120px" src="sign out.png"/></a>
+  
+ 
+</body>
+</html>
